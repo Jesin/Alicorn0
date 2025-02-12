@@ -263,6 +263,9 @@ local function switch_impl(syntax, env)
 		end
 		--TODO rewrite this to collect the branch envs and join them back together:
 		tag, term = table.unpack(tag)
+		if variants:get(tag.str) ~= nil then
+			return false, "duplicate case tag " .. tag.str
+		end
 		variants:set(tag.str, term)
 		variant_debug:set(tag.str, spanned_name(tag.str, tag.span))
 	end
