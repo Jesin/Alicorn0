@@ -1961,7 +1961,7 @@ local enum_variant = metalanguage.reducer(function(syntax, env)
 	end
 
 	return true,
-		tag.name,
+		tag,
 		U.notail(anchored_inferrable_term(syntax.start_anchor, unanchored_inferrable_term.tuple_type(tail.args))),
 		env
 end, "enum_variant")
@@ -1980,7 +1980,7 @@ local function enum_impl(syntax, env)
 		end
 
 		tag, term = table.unpack(tag)
-		variants:set(tag, term)
+		variants:set(tag.str, term)
 	end
 
 	return true,
